@@ -47,9 +47,9 @@ async function findUserServices(userId) {
       const query = `
   SELECT 
       services.*, 
-      users.name AS owner_name, 
+      users.name AS worker_name, 
       users.city,
-      users.cellphone AS owner_phone,
+      users.cellphone AS worker_phone,
       COALESCE(
           (
               SELECT 
