@@ -1,6 +1,6 @@
 import joi from 'joi';
 
-const ServiceSchema = joi.object({
+const serviceSchema = joi.object({
     name: joi.string().required(),
     ownerId:joi.number().integer().required(),
     description: joi.string().required(), 
@@ -11,8 +11,8 @@ const ServiceSchema = joi.object({
 });
 
 
-const ServiceAvailableSchema = joi.object({
+const serviceAvailabilitySchema = joi.object({
     available:joi.boolean().required()
 });
 
-export { ServiceSchema, ServiceAvailableSchema };
+export { serviceSchema, serviceAvailabilitySchema };
