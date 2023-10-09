@@ -60,24 +60,24 @@ async function findService (id) {
       const query = `
   SELECT 
       services.*, 
-      users.name AS owner_name, 
+      users.name AS worker_name, 
       users.city_name,
-      users.cellphone AS owner_phone,
+      users.cellphone AS worker_phone,
       COALESCE(
           (
               SELECT 
                   json_agg(json_build_object(
                       'id', reviews.id, 
-                      'review_text', reviews.review_text, 
+                      'text', reviews.text, 
                       'rating', reviews.rating,
-                      'writer_id', reviews.writer_id,
-                      'writer_name', u_writer.name,
+                      'customer_id', reviews.customer_id,
+                      'customer_name', u_customer.name,
                       'created_at', reviews.created_at
                   )) 
               FROM 
                   reviews 
               JOIN 
-                  users AS u_writer ON reviews.writer_id = u_writer.id
+                  users AS u_customer ON reviews.customer_id = u_customer.id
               WHERE 
                   reviews.service_id = services.id
           ),
@@ -116,9 +116,9 @@ async function findAllServices() {
       const query = `
   SELECT 
       services.*, 
-      users.name AS owner_name, 
+      users.name AS worker_name, 
       users.city_name,
-      users.cellphone AS owner_phone,
+      users.cellphone AS worker_phone,
       COALESCE(
           (
               SELECT 
@@ -135,16 +135,16 @@ async function findAllServices() {
               SELECT 
                   json_agg(json_build_object(
                       'id', reviews.id,
-                      'review_text', reviews.review_text,
+                      'text', reviews.text,
                       'rating', reviews.rating,
-                      'writer_id', reviews.writer_id,
-                      'writer_name', writer.name,
+                      'customer_id', reviews.customer_id,
+                      'customer_name', customer.name,
                       'created_at', reviews.created_at
                   )) 
               FROM 
                   reviews 
               JOIN 
-                  users AS writer ON reviews.writer_id = writer.id 
+                  users AS customer ON reviews.customer_id = customer.id 
               WHERE 
                   reviews.service_id = services.id
           ),
@@ -186,8 +186,7 @@ async function changeServiceAvailability (id, value) {
 
 async function checkWorkerService (workerId, serviceId) {
     try {
-        const query = `SELECT * FROM services WHERE id = $1
-        `;
+        const query = `SELECT * FROM services WHERE id = $1`;
         
         const service = await db.query(query,[serviceId]);
         

@@ -3,8 +3,8 @@ import validateAuth from "../middlewares/validate.auth.middlewares.js";
 import validateSchema from "../middlewares/validate.schema.middlewares.js";
 import { serviceSchema, serviceAvailabilitySchema } from "../schemas/services.schemas.js";
 import { postService, getService, deleteService, updateService, changeServiceAvailability, getAllServices } from "../controllers/services.controllers.js";
-import { ReviewSchema } from "../schemas/review.schemas.js";
-import { insertReview } from "../controllers/review.controllers.js";
+import reviewSchema  from "../schemas/reviews.schemas.js";
+import createReview from "../controllers/reviews.controllers.js";
 
 const servicesRouter = Router();
 
@@ -14,6 +14,6 @@ servicesRouter.get('/services', getAllServices);
 servicesRouter.delete('/service/:id', validateAuth, deleteService);
 servicesRouter.put('/service/:id', validateAuth, validateSchema(serviceSchema), updateService);
 servicesRouter.patch('/service/:id',validateAuth, validateSchema(serviceAvailabilitySchema), changeServiceAvailability);
-servicesRouter.post('/service/review/add',validateAuth, validateSchema(ReviewSchema), insertReview);
+servicesRouter.post('/service/review/add',validateAuth, validateSchema(reviewSchema), createReview);
 
 export default servicesRouter;

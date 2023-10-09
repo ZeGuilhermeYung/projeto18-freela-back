@@ -9,6 +9,7 @@ async function getUserbyId (id) {
       const user = userInfo.rows[0];
       return user;
   } catch (error) {
+      console.log(error);
       return null;
   };
 };
@@ -23,6 +24,7 @@ async function getUserbyEmail (email) {
       const user = userInfo.rows[0];
       return user;
   } catch (error) {
+      console.log(error);
       return null;
   };
 };
@@ -89,6 +91,7 @@ async function findUserServices(userId) {
       
       return service.rows;
   } catch (error) {
+      console.log(error);
       return null;
   }
 };
