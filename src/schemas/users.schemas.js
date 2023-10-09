@@ -5,7 +5,7 @@ const userSchema = joi.object({
     email: joi.string().required(),
     password: joi.string().required(),
     confirmPassword: joi.string().required(),
-    cellphone: joi.number().integer().required(),
+    phone: joi.number().integer().required(),
     city:joi.string().required()
 });
 
