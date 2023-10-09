@@ -66,16 +66,16 @@ async function findUserServices(userId) {
               SELECT 
                   json_agg(json_build_object(
                       'id', reviews.id,
-                      'review_text', reviews.review_text,
+                      'text_description', reviews.text_description,
                       'rating', reviews.rating,
-                      'writer_id', reviews.writer_id,
-                      'writer_name', writer.name,
+                      'customer_id', reviews.customer_id,
+                      'customer_name', customer.name,
                       'created_at', reviews.created_at
                   )) 
               FROM 
                   reviews 
               JOIN 
-                  users AS writer ON reviews.writer_id = writer.id 
+                  users AS customer ON reviews.customer_id = customer.id 
               WHERE 
                   reviews.service_id = services.id
           ),

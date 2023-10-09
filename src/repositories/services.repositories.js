@@ -68,7 +68,7 @@ async function findService (id) {
               SELECT 
                   json_agg(json_build_object(
                       'id', reviews.id, 
-                      'text', reviews.text, 
+                      'text_description', reviews.text_description, 
                       'rating', reviews.rating,
                       'customer_id', reviews.customer_id,
                       'customer_name', u_customer.name,
@@ -135,7 +135,7 @@ async function findAllServices() {
               SELECT 
                   json_agg(json_build_object(
                       'id', reviews.id,
-                      'text', reviews.text,
+                      'text_description', reviews.text_description,
                       'rating', reviews.rating,
                       'customer_id', reviews.customer_id,
                       'customer_name', customer.name,
