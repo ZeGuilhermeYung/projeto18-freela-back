@@ -2,7 +2,7 @@ import { changeServiceAvailability, checkWorkerService, createService, findAllSe
 
 async function getService (req, res) {
   try {
-      const service = await findService(Number(req.params.id));
+      const service = await findService(req.params.id);
       if(!service) return res.sendStatus(404);
       return res.status(200).send(service);
   } catch (error) {

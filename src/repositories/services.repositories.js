@@ -56,13 +56,14 @@ async function removeService (id) {
 };
 
 async function findService (id) {
+    console.log(id);
   try {
       const query = `
   SELECT 
       services.*, 
       users.name AS worker_name, 
       users.city,
-      users.cellphone AS worker_phone,
+      users.phone AS worker_phone,
       COALESCE(
           (
               SELECT 
@@ -71,8 +72,7 @@ async function findService (id) {
                       'text_description', reviews.text_description, 
                       'rating', reviews.rating,
                       'customer_id', reviews.customer_id,
-                      'customer_name', u_customer.name,
-                      'created_at', reviews.created_at
+                      'customer_name', u_customer.name
                   )) 
               FROM 
                   reviews 
@@ -99,7 +99,7 @@ async function findService (id) {
   JOIN 
       users ON services.worker_id = users.id
   WHERE 
-      services.id = $1
+      services.id = $1;
 `;
       
       const service = await db.query(query,[id]);
@@ -118,7 +118,7 @@ async function findAllServices() {
       services.*, 
       users.name AS worker_name, 
       users.city,
-      users.cellphone AS worker_phone,
+      users.phone AS worker_phone,
       COALESCE(
           (
               SELECT 
@@ -138,8 +138,7 @@ async function findAllServices() {
                       'text_description', reviews.text_description,
                       'rating', reviews.rating,
                       'customer_id', reviews.customer_id,
-                      'customer_name', customer.name,
-                      'created_at', reviews.created_at
+                      'customer_name', customer.name
                   )) 
               FROM 
                   reviews 
@@ -153,7 +152,7 @@ async function findAllServices() {
   FROM 
       services
   JOIN 
-      users ON services.worker_id = users.id
+      users ON services.worker_id = users.id;
 `;
       
       const services = await db.query(query,[]);
