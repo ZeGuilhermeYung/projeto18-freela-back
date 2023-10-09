@@ -61,7 +61,7 @@ async function findService (id) {
   SELECT 
       services.*, 
       users.name AS worker_name, 
-      users.city_name,
+      users.city,
       users.cellphone AS worker_phone,
       COALESCE(
           (
@@ -117,7 +117,7 @@ async function findAllServices() {
   SELECT 
       services.*, 
       users.name AS worker_name, 
-      users.city_name,
+      users.city,
       users.cellphone AS worker_phone,
       COALESCE(
           (

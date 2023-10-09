@@ -48,7 +48,7 @@ async function findUserServices(userId) {
   SELECT 
       services.*, 
       users.name AS owner_name, 
-      users.city_name,
+      users.city,
       users.cellphone AS owner_phone,
       COALESCE(
           (
