@@ -1,5 +1,7 @@
 import { v4 as uuid } from 'uuid';
-import { validateEmail, registerUserSession, validateUserRegister, registerUser, getUserbyEmail } from '../repositories/auth.repositories.js';
+import { validateEmail, validateUserRegister, registerUser } from '../repositories/auth.repositories.js';
+import { registerUserSession } from '../repositories/users.repositories.js';
+import { getUserbyEmail } from '../repositories/users.repositories.js';
 
 async function signUp (req, res) {
 

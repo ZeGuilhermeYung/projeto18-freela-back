@@ -1,4 +1,4 @@
-import { getUserbyId } from "../repositories/auth.repositories.js";
+import { getUserbyId } from "../repositories/users.repositories.js";
 import { findUserServices } from '../repositories/users.repositories.js';
 
 async function getUser (req, res) {

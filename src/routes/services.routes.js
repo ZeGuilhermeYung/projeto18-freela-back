@@ -2,7 +2,8 @@ import { Router } from "express";
 import validateAuth from "../middlewares/validate.auth.middlewares.js";
 import validateSchema from "../middlewares/validate.schema.middlewares.js";
 import { serviceSchema, serviceAvailabilitySchema } from "../schemas/services.schemas.js";
-import { postService, getService, deleteService, updateService, changeServiceAvailability, getAllServices } from "../controllers/services.controllers.js";
+import { postService, getService, deleteService, updateService, getAllServices } from "../controllers/services.controllers.js";
+import { changeServiceAvailability } from "../repositories/services.repositories.js";
 import reviewSchema  from "../schemas/reviews.schemas.js";
 import createReview from "../controllers/reviews.controllers.js";
 
